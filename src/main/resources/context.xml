@@ -8,7 +8,11 @@
         <constructor-arg index="1" value="Taleb Yaroslav"/>
     </bean>
 
-    <bean id="eventLogger" class="com.epam.spring.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>
+    
+    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger">
+        <constructor-arg value=""/>
+    </bean>
 
     <bean name="event" class="com.epam.spring.Event" scope="prototype">
         <constructor-arg>
@@ -20,7 +24,7 @@
     </bean>
 
     <bean id="app" class="com.epam.spring.App">
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="consoleEventLogger"/>
         <constructor-arg ref="client"/>
     </bean>
 </beans>
