@@ -16,12 +16,18 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         App app = (App) context.getBean("app");
 
-        app.logEvent("Hello world with 1");
-        app.logEvent("Hello world with 2");
+        Event event1 = (Event) context.getBean("event");
+        event1.setMsg("Event form user 1");
+
+        Event event2 = (Event) context.getBean("event");
+        event2.setMsg("Event form user 2");
+
+        app.logEvent(event1);
+        app.logEvent(event2);
     }
 
-    private void logEvent(String msg) {
-        String message = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
-        consoleEventLogger.logEvent(message);
+    private void logEvent(Event event) {
+        event.setMsg(event.getMsg().replaceAll(String.valueOf(client.getId()), client.getFullName()));
+        consoleEventLogger.logEvent(event);
     }
 }

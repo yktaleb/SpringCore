@@ -20,10 +20,6 @@ public class Event {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getMsg() {
         return msg;
     }
@@ -34,10 +30,6 @@ public class Event {
 
     public Date getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     @Override
