@@ -10,6 +10,15 @@
 
     <bean id="eventLogger" class="com.epam.spring.ConsoleEventLogger"/>
 
+    <bean name="event" class="com.epam.spring.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+        </constructor-arg>
+    </bean>
+
     <bean id="app" class="com.epam.spring.App">
         <constructor-arg ref="eventLogger"/>
         <constructor-arg ref="client"/>
