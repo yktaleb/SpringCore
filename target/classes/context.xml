@@ -3,21 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="com.epam.spring.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="Taleb Yaroslav"/>
-    </bean>
-
-    <bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>
-    
-    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger" init-method="init">
-        <constructor-arg value="D:\EpamLibrary\logs.txt"/>
-    </bean>
-
-    <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger"
-            destroy-method="destroy">
-        <constructor-arg value="D:\EpamLibrary\logs.txt"/>
-        <constructor-arg value="2"/>
     </bean>
 
     <bean name="event" class="com.epam.spring.Event" scope="prototype">
