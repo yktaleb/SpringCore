@@ -1,5 +1,6 @@
 package com.epam.spring;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -7,10 +8,12 @@ public class Event {
     private int id;
     private String msg;
     private Date date;
+    private DateFormat dateFormat;
 
-    public Event(Date date) {
+    public Event(Date date, DateFormat dateFormat) {
         id = new Random().nextInt();
         this.date = date;
+        this.dateFormat = dateFormat;
     }
 
     public int getId() {
@@ -42,7 +45,7 @@ public class Event {
         return "Event{" +
                 "id=" + id +
                 ", msg='" + msg + '\'' +
-                ", date=" + date +
+                ", date=" + dateFormat.format(date) +
                 '}';
     }
 }
