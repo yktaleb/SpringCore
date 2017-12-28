@@ -8,6 +8,7 @@
     <bean id="client" class="com.epam.spring.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="Taleb Yaroslav"/>
+        <property name="greeting" value="Hello"/>
     </bean>
 
     <bean name="event" class="com.epam.spring.Event" scope="prototype">
