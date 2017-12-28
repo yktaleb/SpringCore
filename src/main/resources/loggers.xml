@@ -12,4 +12,13 @@
     <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger" parent="fileEventLogger">
         <constructor-arg value="2"/>
     </bean>
+
+    <bean id="combinedEventLogger" class="com.epam.spring.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="fileEventLogger"/>
+                <ref bean="consoleEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>
