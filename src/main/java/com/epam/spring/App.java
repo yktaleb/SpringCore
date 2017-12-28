@@ -4,11 +4,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
-    public ConsoleEventLogger consoleEventLogger;
+    public EventLogger eventLogger;
     public Client client;
 
-    public App(ConsoleEventLogger consoleEventLogger, Client client) {
-        this.consoleEventLogger = consoleEventLogger;
+    public App(EventLogger eventLogger, Client client) {
+        this.eventLogger = eventLogger;
         this.client = client;
     }
 
@@ -28,6 +28,6 @@ public class App {
 
     private void logEvent(Event event) {
         event.setMsg(event.getMsg().replaceAll(String.valueOf(client.getId()), client.getFullName()));
-        consoleEventLogger.logEvent(event);
+        eventLogger.logEvent(event);
     }
 }
