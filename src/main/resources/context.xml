@@ -14,9 +14,7 @@
         <constructor-arg value="D:\EpamLibrary\logs.txt"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger"
-           init-method="init" destroy-method="destroy">
-        <constructor-arg value="D:\EpamLibrary\logs.txt"/>
+    <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger" parent="fileEventLogger">
         <constructor-arg value="2"/>
     </bean>
 
