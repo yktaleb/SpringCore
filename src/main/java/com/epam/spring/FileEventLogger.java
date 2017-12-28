@@ -16,7 +16,7 @@ public class FileEventLogger implements EventLogger {
     @Override
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.toString(), "UTF-8", true );
+            FileUtils.writeStringToFile(file, event.toString() + "\n", "UTF-8", true );
         } catch (IOException e) {
             e.printStackTrace();
         }
