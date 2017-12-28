@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class FileEventLogger implements EventLogger {
     private String fileName;
+    private File file;
 
     public FileEventLogger(String fileName) {
         this.fileName = fileName;
@@ -15,9 +16,16 @@ public class FileEventLogger implements EventLogger {
     @Override
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(new File(fileName), event.toString(), "UTF-8", true );
+            FileUtils.writeStringToFile(file, event.toString(), "UTF-8", true );
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void init() throws Exception {
+        this.file = new File(fileName);
+        if (!file.canWrite()) {
+            throw new Exception();
         }
     }
 }

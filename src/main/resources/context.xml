@@ -10,8 +10,8 @@
 
     <bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>
     
-    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger">
-        <constructor-arg value=""/>
+    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger" init-method="init">
+        <constructor-arg value="log.txt"/>
     </bean>
 
     <bean name="event" class="com.epam.spring.Event" scope="prototype">
