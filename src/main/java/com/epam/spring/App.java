@@ -27,7 +27,7 @@ public class App {
         Event event2 = (Event) context.getBean("event");
         event2.setMsg("user 2");
 
-        app.logEvent(null, event1);
+        app.logEvent(EventType.INFO, event1);
         context.close();
     }
 
