@@ -1,6 +1,7 @@
 package com.epam.spring;
 
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
@@ -30,6 +31,14 @@ public class Event {
 
     public Date getDate() {
         return date;
+    }
+
+    public static boolean isDay() {
+        int hour = LocalDateTime.now().getHour();
+        if (hour > 8 && hour <=17) {
+            return true;
+        }
+        return false;
     }
 
     @Override
