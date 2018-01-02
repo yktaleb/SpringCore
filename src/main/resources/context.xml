@@ -24,13 +24,13 @@
         </property>
     </bean>
 
-    <bean id="client" class="com.epam.spring.Client"
-          p:greeting="#{systemEnvironment['YAROSLAV']}">
+    <bean id="client" class="com.epam.spring.xml.domain.Client"
+          p:greeting="${greeting}">
         <constructor-arg index="0" value="${id}"/>
         <constructor-arg index="1" value="${name}"/>
     </bean>
 
-    <bean name="event" class="com.epam.spring.Event" scope="prototype">
+    <bean name="event" class="com.epam.spring.xml.domain.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>
@@ -44,8 +44,8 @@
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <bean id="app" class="com.epam.spring.App"
+    <bean id="app" class="com.epam.spring.xml.App"
           c:client-ref="client"
-          c:defaultLogger-ref="#{T(com.epam.spring.Event).isDay() ? consoleEventLogger : cacheFileEventLogger}"
+          c:defaultLogger-ref="#{T(com.epam.spring.xml.domain.Event).isDay() ? consoleEventLogger : cacheFileEventLogger}"
           c:loggers-ref="loggerMap"/>
 </beans>

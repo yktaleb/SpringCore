@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd
+            http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+    <context:component-scan base-package="com.epam.spring.javaconfig"/>
+
+    <util:list id="loggerList">
+        <ref bean="fileEventLogger"/>
+        <ref bean="consoleEventLogger"/>
+    </util:list>
+
+
+    <util:map id="loggerMap" key-type="com.epam.spring.javaconfig.domain.EventType"
+              value-type="com.epam.spring.javaconfig.logger.EventLogger">
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+        <entry key="ERROR" value-ref="combinedEventLogger"/>
+    </util:map>
+
+    <context:property-placeholder location="client.properties"
+                                  ignore-resource-not-found="true"/>
+
+</beans>

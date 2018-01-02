@@ -1,5 +1,8 @@
-package com.epam.spring;
+package com.epam.spring.xml.logger.impl;
 
+import com.epam.spring.xml.domain.Event;
+
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 

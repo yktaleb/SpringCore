@@ -1,16 +1,23 @@
-package com.epam.spring;
+package com.epam.spring.javaconfig.domain;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
+@Component("event")
+@Scope(value = "prototype")
 public class Event {
     private int id;
     private String msg;
     private Date date;
     private DateFormat dateFormat;
 
+    @Autowired
     public Event(Date date, DateFormat dateFormat) {
         id = new Random().nextInt();
         this.date = date;

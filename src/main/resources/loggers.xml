@@ -3,18 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="com.epam.spring.xml.logger.impl.ConsoleEventLogger"/>
 
-    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger" init-method="init">
+    <bean id="fileEventLogger" class="com.epam.spring.xml.logger.impl.FileEventLogger" init-method="init">
         <constructor-arg value="D:\IdeaProjects\logs.txt"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger"
+    <bean id="cacheFileEventLogger" class="com.epam.spring.xml.logger.impl.CacheFileEventLogger"
           parent="fileEventLogger" destroy-method="destroy">
         <constructor-arg value="2"/>
     </bean>
 
-    <bean id="combinedEventLogger" class="com.epam.spring.CombinedEventLogger">
+    <bean id="combinedEventLogger" class="com.epam.spring.xml.logger.impl.CombinedEventLogger">
         <constructor-arg>
             <list>
                 <ref bean="fileEventLogger"/>

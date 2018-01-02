@@ -1,9 +1,14 @@
-package com.epam.spring;
+package com.epam.spring.xml;
 
+import com.epam.spring.xml.domain.Client;
+import com.epam.spring.xml.domain.Event;
+import com.epam.spring.xml.domain.EventType;
+import com.epam.spring.xml.logger.EventLogger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 public class App {
@@ -11,7 +16,10 @@ public class App {
     private EventLogger defaultLogger;
     private Map<EventType, EventLogger> loggers;
 
-    public App(Client client, EventLogger defaultLogger, Map<EventType, EventLogger> loggers) {
+    public App(Client client,
+               EventLogger defaultLogger,
+               Map<EventType,
+               EventLogger> loggers) {
         this.client = client;
         this.defaultLogger = defaultLogger;
         this.loggers = loggers;

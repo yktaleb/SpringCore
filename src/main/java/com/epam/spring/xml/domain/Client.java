@@ -1,4 +1,4 @@
-package com.epam.spring;
+package com.epam.spring.xml.domain;
 
 public class Client {
     private Long id;
