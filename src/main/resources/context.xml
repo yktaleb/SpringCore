@@ -4,17 +4,27 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/util
-       http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-3.2.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
     <import resource="loggers.xml"/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="loggerAspect" class="com.epam.spring.xml.aspect.LoggerAspect"
+          c:replaceableLogger-ref="fileEventLogger"
+          c:maxCountUseConsoleLogger="2"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>client.properties</value>
+                <value>JDBC.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>
@@ -44,8 +54,11 @@
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <bean id="app" class="com.epam.spring.xml.App"
-          c:client-ref="client"
-          c:defaultLogger-ref="#{T(com.epam.spring.xml.domain.Event).isDay() ? consoleEventLogger : cacheFileEventLogger}"
-          c:loggers-ref="loggerMap"/>
+    <bean id="app" class="com.epam.spring.xml.App">
+        <constructor-arg ref="client"/>
+        <constructor-arg value="#{T(com.epam.spring.xml.domain.Event).isDay() ? consoleEventLogger : cacheFileEventLogger}"/>
+        <constructor-arg ref="loggerMap"/>
+        <property name="loggerAspect" ref="loggerAspect"/>
+    </bean>
+
 </beans>

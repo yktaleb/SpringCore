@@ -10,9 +10,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>4.3.13.RELEASE</org.springframework.version>
+        <org.springframework.version>3.2.18.RELEASE</org.springframework.version>
         <commons.version>2.6</commons.version>
         <aspectj.version>1.8.13</aspectj.version>
+        <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
     </properties>
 
     <dependencies>
@@ -46,6 +47,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <dependency>
